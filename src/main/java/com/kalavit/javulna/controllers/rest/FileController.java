@@ -54,7 +54,7 @@ public class FileController {
             @RequestParam(name = "fileName") String fileName,
             HttpServletRequest request) {
 
-        System.out.println(fileName);
+        LOG.debug("Downloading file: {}", fileName);
         // Load file as Resource
         Resource resource = fileStorageService.loadFileAsResource(fileName);
 
