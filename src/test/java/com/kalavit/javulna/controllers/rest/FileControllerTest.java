@@ -12,6 +12,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -41,8 +43,8 @@ class FileControllerTest {
             }
 
             @Override
-            public File getFile() {
-                throw new UnsupportedOperationException("no backing file");
+            public File getFile() throws IOException {
+                throw new FileNotFoundException("no backing file");
             }
         };
 
