@@ -53,6 +53,8 @@ public class FileController {
     public ResponseEntity<Resource> downloadFile(
             @RequestParam(name = "fileName") String fileName,
             HttpServletRequest request) {
+
+        System.out.println(fileName);
         // Load file as Resource
         Resource resource = fileStorageService.loadFileAsResource(fileName);
 
