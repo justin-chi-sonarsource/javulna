@@ -40,6 +40,7 @@ public class FileStorageService {
             Path targetLocation = Paths.get(fileStorageDir, fileName);
             LOG.debug("gonna write file to {}" ,targetLocation.toString());
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("File Name : " + fileName);
             return fileName;
         } catch (IOException ex) {
             throw new RuntimeException("Could not store file " + fileName + ". Please try again!", ex);
