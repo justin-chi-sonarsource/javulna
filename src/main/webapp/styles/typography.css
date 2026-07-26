@@ -5,14 +5,12 @@
 
 
 .hero-title {
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 700;
 }
 
 
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
-
 .promo-banner {
-  font-family: "Pacifico", cursive;
+  font-family: "Inter", sans-serif;
 }
 
