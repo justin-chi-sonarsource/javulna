@@ -12,7 +12,7 @@ Use the Sonarcloud MCP integration to check the current pull request for SonarQu
 For every pull request:
 
 * Confirm that project `justin-chi-sonarsource_javulna` in organization
-  `justin-github-sonarsource` is accessible. If the Sonarcloud MCP integration supplies the
+  `justin-chi-sonarsource` is accessible. If the Sonarcloud MCP integration supplies the
   organization via `SONARQUBE_ORG`, confirm the resolved organization and
   report it in the summary.
 * Identify the current pull request or matching pull-request analysis.
