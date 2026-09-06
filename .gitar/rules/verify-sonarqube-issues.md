@@ -2,17 +2,17 @@
 title: "Verify and Fix SonarQube Cloud Issues"
 description: "Use SonarQube Cloud Embedded MCP to check each pull request and safely fix eligible blocker and critical issues."
 when: "Any pull request"
-actions: "Use the Sonarcloud MCP server at api.sonarcloud.io integration to check the current pull request for SonarQube Cloud project justin-chi-sonarsource_javulna. Retrieve its quality-gate status and issues. Automatically fix safe, localized blocker and critical issues, push a commit to the PR branch, re-check the PR analysis, and post a summary."
+actions: "Use the Sonarcloud MCP integration to check the current pull request for SonarQube Cloud project justin-chi-sonarsource_javulna. Retrieve its quality-gate status and issues. Automatically fix safe, localized blocker and critical issues, push a commit to the PR branch, re-check the PR analysis, and post a summary."
 ---
 
 # Verify and Fix SonarQube Cloud Issues
 
-Use the Sonarcloud MCP server at api.sonarcloud.io integration to check the current pull request for SonarQube Cloud project `justin-chi-sonarsource_javulna`.
+Use the Sonarcloud MCP integration to check the current pull request for SonarQube Cloud project `justin-chi-sonarsource_javulna`.
 
 For every pull request:
 
 * Confirm that project `justin-chi-sonarsource_javulna` in organization
-  `justin-github-sonarsource` is accessible. If the MCP server supplies the
+  `justin-github-sonarsource` is accessible. If the Sonarcloud MCP integration supplies the
   organization via `SONARQUBE_ORG`, confirm the resolved organization and
   report it in the summary.
 * Identify the current pull request or matching pull-request analysis.
