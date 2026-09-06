@@ -19,7 +19,7 @@ For every pull request:
 * Retrieve the pull request's quality-gate status.
 * Retrieve issues raised on the pull request and count blocker and critical issues.
 
-For each blocker or critical issue found on the current pull request:
+For each issue found on the current pull request:
 
 * Apply an automatic fix only when it is safe, localized, and does not change intended behavior.
 * Keep the fix within the current PR's scope.
