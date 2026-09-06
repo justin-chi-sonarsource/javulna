@@ -7,7 +7,7 @@ actions: "Use the Sonarcloud MCP integration to check the current pull request f
 
 # Verify and Fix SonarQube Cloud MCP Issues
 
-Use the `Sonarcloud` MCP integration to check the current pull request for SonarQube Cloud project `justin-chi-sonarsource_javulna`.
+Use the `sonarqube` MCP integration (SonarQube MCP Server) to check the current pull request for SonarQube Cloud project `justin-chi-sonarsource_javulna`.
 
 For every pull request:
 
