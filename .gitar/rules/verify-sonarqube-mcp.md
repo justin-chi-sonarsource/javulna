@@ -1,7 +1,20 @@
+
+
 # Verify SonarQube Cloud MCP
 
-For every pull request, use the SonarQube MCP integration to:
-1. Find the SonarQube Cloud project for this repository.
-2. Retrieve the current quality gate status.
-3. List the highest-severity open issues on the default branch.
-Include the project key, quality-gate result, and issue count in the PR review summary.
+Use the `Sonarcloud` MCP integration to retrieve SonarQube Cloud data for project key `justin-chi-sonarsource_javulna`.
+
+For every pull request:
+
+* Confirm that project `justin-chi-sonarsource_javulna` is accessible.
+* Retrieve the current quality-gate status for the project.
+* Retrieve open issues for the project and count blocker and critical issues.
+* Post a short PR summary containing:
+  * Project key
+  * Quality-gate status
+  * Number of open blocker issues
+  * Number of open critical issues
+
+If the project cannot be found or the integration cannot authenticate, post the exact error message and state whether it appears to be an organization-key, project-key, or authorization problem.
+
+
