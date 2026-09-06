@@ -55,6 +55,7 @@ public class UserService {
 
     @Transactional
     public UserDto createUser(UserDto ud) {
+        System.out.println("test");
         ud.setId(null);
         User user = beanMapper.map(ud, User.class, "userMapNoNull");
         User saved = uDao.saveAndFlush(user);
