@@ -11,7 +11,10 @@ Use the `Sonarcloud` MCP integration to check the current pull request for Sonar
 
 For every pull request:
 
-* Confirm that project `justin-chi-sonarsource_javulna` is accessible.
+* Confirm that project `justin-chi-sonarsource_javulna` in organization
+  `justin-chi-sonarsource` is accessible. If the MCP server supplies the
+  organization via `SONARQUBE_ORG`, confirm the resolved organization and
+  report it in the summary.
 * Identify the current pull request or matching pull-request analysis.
 * Retrieve the pull request's quality-gate status.
 * Retrieve issues raised on the pull request and count blocker and critical issues.
@@ -21,7 +24,10 @@ For each blocker or critical issue found on the current pull request:
 * Apply an automatic fix only when it is safe, localized, and does not change intended behavior.
 * Keep the fix within the current PR's scope.
 * Commit the fix to the PR branch.
-* Re-check the SonarQube Cloud pull-request analysis after the fix.
+* Re-check the SonarQube Cloud pull-request analysis after the fix, waiting until the
+  analysis for the newly pushed commit SHA has completed. If it has not completed,
+  report the post-fix quality gate as "analysis pending" rather than reusing the
+  pre-fix status.
 * Do not auto-fix issues requiring architectural decisions, unclear requirements, dependency upgrades, broad refactoring, or behavioral changes; report these instead.
 
 Post a short PR summary containing:
