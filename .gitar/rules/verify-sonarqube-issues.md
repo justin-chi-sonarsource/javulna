@@ -11,10 +11,11 @@ Use the Sonarcloud MCP integration to check the current pull request for SonarQu
 
 For every pull request:
 
-* If the Sonarcloud MCP integration supplies the
-  organization via `SONARQUBE_ORG`, confirm the resolved organization and
-  report it in the summary. Or use project key `justin-chi-sonarsource_javulna` and organization key
-  `justin-chi-sonarsource` Sonarcloud MCP integration connection. 
+* Resolve the organization key as follows: use `SONARQUBE_ORG` if the Sonarcloud MCP
+  integration supplies it; otherwise fall back to organization key
+  `justin-chi-sonarsource`. Always use project key `justin-chi-sonarsource_javulna`.
+  Report the resolved organization in the summary. If neither source resolves, stop and
+  report that the organization key could not be determined.
 * Identify the current pull request or matching pull-request analysis.
 * Retrieve the pull request's quality-gate status.
 * Retrieve issues raised on the pull request and count blocker and critical issues.
