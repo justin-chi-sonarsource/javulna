@@ -30,20 +30,25 @@ public class UserService {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
-    @Autowired
-    private UserAutoDao uDao;
+    private final UserAutoDao uDao;
+
+    private final DozerBeanMapper beanMapper;
+
+    private final RemotePasswordChangeService passwordChangeService;
+
+    private final PasswordEncoder encoder;
 
     @Autowired
-    private DozerBeanMapper beanMapper;
-
-    @Autowired
-    RemotePasswordChangeService passwordChangeService;
-    
-    @Autowired
-    PasswordEncoder encoder;
+    public UserService(UserAutoDao uDao, DozerBeanMapper beanMapper,
+                       RemotePasswordChangeService passwordChangeService, PasswordEncoder encoder) {
+        this.uDao = uDao;
+        this.beanMapper = beanMapper;
+        this.passwordChangeService = passwordChangeService;
+        this.encoder = encoder;
+    }
 
     public List<UserDto> findAllUsers() {
-        System.out.println("test");
+        LOG.debug("test");
         List<User> users = uDao.findAll();
         List<UserDto> ret = new ArrayList<UserDto>();
         for (User user : users) {
