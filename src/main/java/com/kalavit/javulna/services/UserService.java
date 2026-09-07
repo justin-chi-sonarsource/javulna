@@ -43,6 +43,7 @@ public class UserService {
     PasswordEncoder encoder;
 
     public List<UserDto> findAllUsers() {
+        System.out.println("test");
         List<User> users = uDao.findAll();
         List<UserDto> ret = new ArrayList<UserDto>();
         for (User user : users) {
