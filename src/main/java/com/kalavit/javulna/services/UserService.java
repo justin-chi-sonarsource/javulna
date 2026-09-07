@@ -43,6 +43,7 @@ public class UserService {
     PasswordEncoder encoder;
 
     public List<UserDto> findAllUsers() {
+        System.out.println("test");
         List<User> users = uDao.findAll();
         List<UserDto> ret = new ArrayList<UserDto>();
         for (User user : users) {
@@ -54,6 +55,7 @@ public class UserService {
 
     @Transactional
     public UserDto createUser(UserDto ud) {
+        System.out.println("test");
         ud.setId(null);
         User user = beanMapper.map(ud, User.class, "userMapNoNull");
         User saved = uDao.saveAndFlush(user);
