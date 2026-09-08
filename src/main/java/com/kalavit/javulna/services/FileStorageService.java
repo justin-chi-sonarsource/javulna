@@ -34,6 +34,7 @@ public class FileStorageService {
     private  String fileStorageDir;
 
     public String storeFile(MultipartFile file) {
+        System.out.println("test");
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             // Copy file to the target location (Replacing existing file with the same name)
