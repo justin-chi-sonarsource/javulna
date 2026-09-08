@@ -20,9 +20,10 @@ For every pull request:
 * Retrieve the pull request's quality-gate status.
 * Retrieve issues raised on the pull request and count blocker and critical issues.
 
-For each issue found on the current pull request:
+For each blocker or critical issue found on the current pull request:
 
 * Apply an automatic fix only when it is safe, localized, and does not change intended behavior.
+* Leave issues below critical severity unfixed and list them in the summary.
 * Keep the fix within the current PR's scope.
 * Commit the fix to the PR branch.
 * Re-check the SonarQube Cloud pull-request analysis after the fix, waiting until the
