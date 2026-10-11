@@ -52,12 +52,12 @@ public class LdapService {
         try {
             LdapUserDto ret = new LdapUserDto();
             DirContext ctx = initContext();
-            String filter = "(&(uid=" + uid + ") (userPassword=" + password + "))";
+            String filter = "(&(uid={0}) (userPassword={1}))";
 
             SearchControls ctls = new SearchControls();
             ctls.setSearchScope(SearchControls.SUBTREE_SCOPE);
 
-            NamingEnumeration answer = ctx.search(ldapConfig.getSearchbase(), filter, ctls);
+            NamingEnumeration answer = ctx.search(ldapConfig.getSearchbase(), filter, new Object[]{uid, password}, ctls);
 
             SearchResult sr = (SearchResult) answer.next();
             Attributes attrs = sr.getAttributes();

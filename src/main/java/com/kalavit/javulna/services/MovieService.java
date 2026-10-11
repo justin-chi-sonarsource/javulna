@@ -11,7 +11,9 @@ import com.kalavit.javulna.services.autodao.MovieAutoDao;
 import java.io.ByteArrayInputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.slf4j.Logger;
@@ -34,35 +36,44 @@ public class MovieService {
     
     private static final Logger LOG = LoggerFactory.getLogger(MovieService.class);
     
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+    
+    private final MovieAutoDao movieAutoDao;
     
     @Autowired
-    MovieAutoDao movieAutoDao;
+    public MovieService(JdbcTemplate jdbcTemplate, MovieAutoDao movieAutoDao) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.movieAutoDao = movieAutoDao;
+    }
     
     public List<MovieDto> findMovie(String title, String description, String genre, String id) {
         int conditions = 0;
         StringBuilder sql = new StringBuilder("select description, title, genre, id from movie ");
+        List<Object> params = new ArrayList<>();
         if (StringUtils.hasText(title)) {
             appendCondition(sql, conditions);
             conditions++;
-            sql.append("title LIKE '%").append(title).append("%'");
+            sql.append("title LIKE ?");
+            params.add("%" + title + "%");
 
         }
         if (StringUtils.hasText(description)) {
             appendCondition(sql, conditions);
             conditions++;
-            sql.append("description LIKE '%").append(description).append("%'");
+            sql.append("description LIKE ?");
+            params.add("%" + description + "%");
         }
         if (StringUtils.hasText(genre)) {
             appendCondition(sql, conditions);
             conditions++;
-            sql.append("genre LIKE '%").append(genre).append("%'");
+            sql.append("genre LIKE ?");
+            params.add("%" + genre + "%");
         }
         if (StringUtils.hasText(id)) {
             appendCondition(sql, conditions);
             conditions++;
-            sql.append("id = '").append(id).append("'");
+            sql.append("id = ?");
+            params.add(id);
         }
         LOG.debug(sql.toString());
         List<MovieDto> users = this.jdbcTemplate.query(sql.toString(), new RowMapper<MovieDto>() {
@@ -75,7 +86,7 @@ public class MovieService {
                 ret.setId(rs.getString("id"));
                 return ret;
             }
-        });
+        }, params.toArray());
 
         return users;
     }
@@ -91,7 +102,9 @@ public class MovieService {
     public Movie saveMovieFromXml(String xml){
         try {
             Movie m = new Movie();
-            DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+            DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = db.parse(new ByteArrayInputStream(xml.getBytes("UTF-8")));
             Element root = doc.getDocumentElement();
             m.setTitle(getText(root, "title"));
