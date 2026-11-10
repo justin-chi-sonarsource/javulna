@@ -1,5 +1,5 @@
 provider "aws" {
-  # Intentional demo violation: HLD permits ap-southeast-1 only
+  # HLD permits ap-southeast-1 only
   region = "ap-southeast-1"
 }
 /*
