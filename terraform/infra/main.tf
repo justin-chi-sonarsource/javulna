@@ -1,6 +1,5 @@
 provider "aws" {
-  # Intentional demo violation: HLD permits ap-southeast-1 only
-  region = "us-east"
+  region = "ap-southeast-1"
 }
 /*
 resource "aws_security_group" "demo_database" {
